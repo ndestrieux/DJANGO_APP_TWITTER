@@ -1,0 +1,21 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+    {% load crispy_forms_tags %}
+
+    <form method="post">
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-outline-primary" value="Add">
+        {% csrf_token %}
+    </form>
+    <hr>
+    {% for tweet in object_list %}
+        <div>
+            {{ tweet.content }}<br>
+            <small>{{ tweet }}</small>
+        </div>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

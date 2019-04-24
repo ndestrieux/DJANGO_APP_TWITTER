@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -105,12 +107,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Login
+
+LOGIN_URL = reverse_lazy('login')
+
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Etc/GMT+1'
 
 USE_I18N = True
 
