@@ -13,12 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from app.views import UserRegistration, TweetView
+from app.views import UserRegistration, TweetView, MessageListView, MessageCreateView, MessageDetailView
 from twitter.settings import DEBUG
 
 urlpatterns = [
@@ -29,6 +30,9 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name="users/logged_out.html"), name='logout'),
 
     path('', TweetView.as_view(), name="home"),
+    path('messages/', MessageListView.as_view(), name="messages"),
+    path('messages/<int:pk>', MessageDetailView.as_view(), name="message_detail"),
+    path('messages/create/', MessageCreateView.as_view(), name="create_message"),
 ]
 
 

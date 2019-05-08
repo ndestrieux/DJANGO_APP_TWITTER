@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Message from {{ object.sender }}</h2>
+        <hr>
+    </div>
+    </div>
+    <div class="container">
+        <div class="container">
+            {{ object.content }}
+        </div>
+        <div class="container text-right">
+            <small>{{ message }}</small>
+        </div>
+    </div>
+    <div class="container">
+        <hr>
+        <a class="btn btn-primary" href="{% url 'messages' %}" }>Back</a>
+    </div>
+
+{% endblock %}

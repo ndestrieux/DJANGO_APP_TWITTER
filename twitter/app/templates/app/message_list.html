@@ -1,0 +1,65 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="float-left">Messages</h2>
+                <a href="{% url 'create_message' %}" class="btn btn-primary float-right">Send message</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <ul class="nav nav-tabs" id="messageTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="received-tab" data-toggle="tab" href="#received"
+                   role="tab" aria-controls="home" aria-selected="true"
+                   {% if nb_of_msg_not_read|length > 0 %}style="font-weight: bold"{% endif %}>
+                    Received ({{ nb_of_msg_not_read|length }})</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="sent-tab" data-toggle="tab" href="#sent"
+                   role="tab" aria-controls="sent" aria-selected="false">Sent</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="messageList">
+            <div class="tab-pane fade show active" id="received" role="tabpanel" aria-labelledby="received-tab">
+                {% for message in object_list %}
+                    {% if message.recipient == user %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">From: {{ message.sender }}</h5>
+                                <p class="card-text"
+                                   {% if message.is_read == False %}style="font-weight: bold"{% endif %}>{{ message.content_wrap }}
+                                </p>
+                                <small class="card-subtitle mb-2 text-muted">
+                                    {{ message }}
+                                </small>
+                                <a href="{% url 'message_detail' message.id %}" class="card-link">Read</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="tab-pane fade" id="sent" role="tabpanel" aria-labelledby="sent-tab">
+                {% for message in object_list %}
+                    {% if message.sender == user %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">To: {{ message.recipient }}</h5>
+                                <p class="card-text">{{ message.content_wrap }}
+                                </p>
+                                <small class="card-subtitle mb-2 text-muted">
+                                    {{ message }}
+                                </small>
+                                <a href="{% url 'message_detail' message.id %}" class="card-link">Read</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

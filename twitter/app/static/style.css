@@ -39,23 +39,6 @@ footer {
     height: 150px;
 }
 
-.empty-column {
-    width: 100px;
-}
-
-.pagination {
-    margin-bottom: 20px;
-}
-
-#messages   {
-    height: 50px;
-}
-
-#title  {
-    padding: 25px 20px;
-}
-
-#empty {
-    padding: 5% 0 10% 0;
-    text-align: center;
+#messageList    {
+    padding-top: 10px;
 }

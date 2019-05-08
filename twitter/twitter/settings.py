@@ -118,13 +118,13 @@ LOGIN_REDIRECT_URL = reverse_lazy('home')
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Etc/GMT+1'
+TIME_ZONE = 'Europe/Warsaw'
 
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
+# USE_I18N = True
+#
+# USE_L10N = True
+#
+# USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
