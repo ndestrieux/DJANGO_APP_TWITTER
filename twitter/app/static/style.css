@@ -39,6 +39,10 @@ footer {
     height: 150px;
 }
 
+.card   {
+    margin-bottom: 10px;
+}
+
 #messageList    {
     padding-top: 10px;
 }

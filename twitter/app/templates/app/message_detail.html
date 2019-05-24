@@ -2,13 +2,19 @@
 
 {% block content %}
     <div class="container">
-        <h2>Message from {{ object.sender }}</h2>
+        <h2>Message
+            {% if message.sender == user %}
+                to {{ message.recipient }}
+            {% else %}
+                from {{ message.sender }}
+            {% endif %}
+        </h2>
         <hr>
     </div>
     </div>
     <div class="container">
         <div class="container">
-            {{ object.content }}
+            {{ message.content }}
         </div>
         <div class="container text-right">
             <small>{{ message }}</small>

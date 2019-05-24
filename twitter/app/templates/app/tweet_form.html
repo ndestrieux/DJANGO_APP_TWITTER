@@ -6,40 +6,35 @@
     <div class="container">
         <form method="post">
             {{ form|crispy }}
-            <input type="submit" class="btn btn-outline-primary" value="Add">
+            <input type="submit" class="btn btn-outline-primary" value="Post">
             {% csrf_token %}
         </form>
         <hr>
     </div>
     <div class="tab-content" id="messageList">
-            <div class="tab-pane fade show active" id="received" role="tabpanel" aria-labelledby="received-tab">
-                {% for tweet in tweets %}
-                    {% if tweet.user == user %}
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ tweet.user }}</h5>
-                                <p class="card-text">
-                                    {{ tweet.content }}
-                                </p>
-                                <small class="card-subtitle mb-2 text-muted">
-                                    {{ tweet }} - Comments: ({{ tweet.comment_set.count }})
-                                </small>
-                                <div class="container">
-                                    {% for comment in tweet.comment_set.all %}
-                                        <hr>
-                                        {{ comment.content }}
-                                        <small>{{ comment }} by {{ comment.user }}</small>
-                                {% endfor %}
-                                </div>
-                            </div>
+        <div class="tab-pane fade show active" id="received" role="tabpanel" aria-labelledby="received-tab">
+            {% for tweet in tweets %}
+                {% if tweet.user == user %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ tweet.user }}</h5>
+                            <p class="card-text">
+                                {{ tweet.content }}
+                            </p>
+                            <small class="card-subtitle mb-2 text-muted">
+                                {{ tweet }} -
+                                <a href="{% url 'tweet-detail' tweet.id %}">Comments:
+                                    ({{ tweet.comment_set.count }})</a>
+                            </small>
                         </div>
-                    {% endif %}
-                    {% empty %}
-                    <div class="container">
-                        <p> There is no tweet yet.</p>
                     </div>
-                {% endfor %}
-            </div>
+                {% endif %}
+            {% empty %}
+                <div class="container">
+                    <p> There is no tweet yet.</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
